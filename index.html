@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gorillaxd133 | Portfolio</title>
-    <!-- Tailwind CSS for sleek layout structure -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for clean aesthetic icons -->
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Inter for Figma style tech aesthetic -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -97,7 +97,7 @@
             text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
         }
 
-        /* White Neon Glow effect for branding name */
+        /* White Neon Glow effect */
         .white-neon-glow {
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.8),
                          0 0 12px rgba(255, 255, 255, 0.5),
@@ -114,7 +114,6 @@
             z-index: 10;
         }
 
-        /* Smooth hover bounce/scale */
         .hover-lift {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -124,14 +123,12 @@
             box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.2);
         }
 
-        /* Grid Background pattern */
         .grid-bg {
             background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 32px 32px;
         }
 
-        /* Fade-in Animation on Load */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -146,7 +143,7 @@
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Lightbox Modal Styles & Smooth Zoom Panning */
+        /* Lightbox Modal Styles */
         #lightbox-modal {
             transition: opacity 0.3s ease, visibility 0.3s;
         }
@@ -156,12 +153,11 @@
             will-change: transform;
         }
 
-        /* Class injected via Javascript during active dragging to bypass latency animations */
         .dragging {
             transition: none !important;
         }
 
-        /* Hover Shine Effect for Thumbnail Cards and PFP */
+        /* Hover Shine Effect */
         .thumbnail-shine {
             position: relative;
             overflow: hidden;
@@ -188,7 +184,7 @@
             transition: left 0.75s ease-in-out;
         }
 
-        /* Branding Text Shine & Loop Configuration */
+        /* Text Shine Effect */
         @keyframes textShineAnimation {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
@@ -210,7 +206,6 @@
             display: inline-block;
         }
 
-        /* Trigger immediately on cursor hover */
         .branding-text-shine:hover {
             animation: textShineAnimation 1.2s linear infinite;
         }
@@ -242,10 +237,6 @@
         <p class="text-zinc-400 font-medium tracking-widest text-xs uppercase animate-pulse">Click anywhere to enter</p>
     </div>
 
-    <!-- Background decorative ambient lights -->
-    <div class="absolute top-[-10%] left-[5%] w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
-
     <!-- MAIN PORTFOLIO WRAPPER -->
     <main class="w-full max-w-3xl glass-card rounded-2xl overflow-hidden mt-8 sm:mt-16 animate-fade-in opacity-0">
         
@@ -258,26 +249,22 @@
             <div class="absolute inset-0 bg-gradient-to-t from-[#08080c] to-transparent"></div>
         </div>
 
-        <!-- Profile / Header block -->
+        <!-- Profile Header -->
         <div class="px-6 pb-6 relative flex flex-col items-center sm:items-start sm:flex-row gap-6 -mt-16">
-            <!-- Avatar with Shine Effect matching the thumbnails -->
             <div class="w-32 h-32 rounded-2xl overflow-hidden border-4 border-[#08080c] bg-zinc-800 shadow-2xl relative group shrink-0 thumbnail-shine cursor-pointer">
                 <img src="https://media.discordapp.net/attachments/1503422943512891470/1528076846787199057/12121.png?ex=6a5cfbf6&is=6a5baa76&hm=dcee679e1f639c0394bf1b815320819abdfd4691c47d496da75c3d1c3aae7ced&=&format=webp&quality=lossless&width=1095&height=1020" 
                      alt="gorillaxd133" 
-                     class="w-full h-full object-cover"
-                     onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=gorillaxd';">
+                     class="w-full h-full object-cover">
             </div>
             
-            <!-- User Text Details -->
             <div class="text-center sm:text-left pt-2 sm:pt-16 flex-1">
                 <h1 class="text-3xl font-extrabold tracking-tight text-white glow-glow">gorillaxd133</h1>
                 <p class="text-purple-400 text-sm font-semibold tracking-wider uppercase mt-1">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Thumbnail Designer & Artist
+                    <i class="fa-solid fa-leaf mr-1"></i> Thumbnail Designer & Artist
                 </p>
                 <p class="text-zinc-400 text-sm mt-2 max-w-xl">
                     Creating Stunning And Bright Youtube And Streaming Thumbnails With Extreme Precision And Loyalty.
                 </p>
-                <!-- Geographic details requested lines -->
                 <p class="text-zinc-500 text-xs font-semibold tracking-wide mt-2 space-x-2 flex flex-wrap justify-center sm:justify-start items-center gap-y-1">
                     <span>Indian Thumbnail Designer</span>
                     <span class="text-zinc-700 font-normal">|</span>
@@ -288,7 +275,7 @@
             </div>
         </div>
 
-        <!-- AUDIO BACKGROUND PLAYER BAR -->
+        <!-- Audio Player Bar -->
         <div class="mx-6 p-4 rounded-xl bg-zinc-950/50 border border-zinc-800/60 flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
@@ -302,13 +289,12 @@
             <button id="audio-toggle" onclick="toggleAudio()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs rounded-lg transition shadow-md shadow-purple-600/20 flex items-center gap-2">
                 <i id="play-icon" class="fa-solid fa-play"></i> <span id="play-text">PLAY</span>
             </button>
-            <!-- Background audio element -->
             <audio id="bg-music" loop>
                 <source src="https://cdn.discordapp.com/attachments/1503422943512891470/1528076451402879036/Toad_Factory_Mario_Kart_Wii.mp3?ex=6a5cfb98&is=6a5baa18&hm=73898a731a25aa473e6fb817b131e38b88f6ac9461a55589afd01cfc665ab69a&" type="audio/mpeg">
             </audio>
         </div>
 
-        <!-- PORTFOLIO SHOWCASE COLUMN -->
+        <!-- Showcase Column -->
         <div class="p-6">
             <h2 class="text-3xl font-extrabold text-white mb-2 tracking-tight glow-glow text-center uppercase">
                 SHOWCASE
@@ -316,105 +302,37 @@
             <p class="text-zinc-400 text-sm font-medium tracking-wide text-center mb-8">
                 The More You Scroll The More You Discover !
             </p>
+            
             <div class="flex flex-col items-center gap-8 w-full">
-                <!-- Thumbnail Card 1 -->
+                <!-- Thumbnail Items -->
                 <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528273595112095804/Watermark_2.png?ex=6a5db333&is=6a5c61b3&hm=c5ad385d9478d510a2fffbf8ca24aff3b50e9fe5e8493a53ee120be11e6f90e6&=&format=webp&quality=lossless&width=1536&height=864" 
-                         alt="Thumbnail Work 1" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #1</span>
-                    </div>
+                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528273595112095804/Watermark_2.png?ex=6a5db333&is=6a5c61b3&hm=c5ad385d9478d510a2fffbf8ca24aff3b50e9fe5e8493a53ee120be11e6f90e6&=&format=webp&quality=lossless&width=1536&height=864" alt="Thumbnail Work 1" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Thumbnail Card 2 -->
                 <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528084685777932398/WATERMARK_1.png?ex=6a5dac03&is=6a5c5a83&hm=430ab14a454d8484c99eae6d7534577ef88255f4e087b6315aaa5ae899d0aba4&=&format=webp&quality=lossless&width=1535&height=863" 
-                         alt="Thumbnail Work 2" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #2</span>
-                    </div>
+                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528084685777932398/WATERMARK_1.png?ex=6a5dac03&is=6a5c5a83&hm=430ab14a454d8484c99eae6d7534577ef88255f4e087b6315aaa5ae899d0aba4&=&format=webp&quality=lossless&width=1535&height=863" alt="Thumbnail Work 2" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Thumbnail Card 3 -->
                 <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528291540282114128/WATERMARK_3.png?ex=6a5dc3e9&is=6a5c7269&hm=3408c8129b8db4378bbab37400b8231edcf0a0ed972a78b9407022db0a8dc240&=&format=webp&quality=lossless&width=1536&height=864" 
-                         alt="Thumbnail Work 3" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #3</span>
-                    </div>
-                </div>
-
-                <!-- Thumbnail Card 4 -->
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528350160881582140/Watermark_4.png?ex=6a5dfa81&is=6a5ca901&hm=9fb76f62bd6a70456ecf654607b71020bc66d0505d8af332afceab5682e3aa39&=&format=webp&quality=lossless&width=1536&height=864" 
-                         alt="Thumbnail Work 4" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #4</span>
-                    </div>
-                </div>
-
-                <!-- Thumbnail Card 5 -->
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528367646498750585/WATERMARK_5.png?ex=6a5e0aca&is=6a5cb94a&hm=82b418875200bab5e0f6e1cbf82fad838ae2e25190bd08686076b53b802ff510&=&format=webp&quality=lossless&width=825&height=464" 
-                         alt="Thumbnail Work 5" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #5</span>
-                    </div>
-                </div>
-
-                <!-- Thumbnail Card 6 -->
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528373150520442991/Watermark_6.png?ex=6a5e0fea&is=6a5cbe6a&hm=0480d3251d905bbe2d7445bc452ce885a9b67949c27b4d7e8fde060379de2d4a&=&format=webp&quality=lossless&width=825&height=464" 
-                         alt="Thumbnail Work 6" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #6</span>
-                    </div>
-                </div>
-
-                <!-- Thumbnail Card 7 -->
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528391338805035079/WATERMARK_7.png?ex=6a5e20db&is=6a5ccf5b&hm=2af74991ed1815f01d0dd44bf52e0fdf8992fbfe3196e283f36a595372efb1c4&=&format=webp&quality=lossless&width=825&height=464" 
-                         alt="Thumbnail Work 7" 
-                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                         onerror="this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&auto=format&fit=crop&q=60';">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-sm font-semibold text-white">Project Concept #7</span>
-                    </div>
+                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528291540282114128/WATERMARK_3.png?ex=6a5dc3e9&is=6a5c7269&hm=3408c8129b8db4378bbab37400b8231edcf0a0ed972a78b9407022db0a8dc240&=&format=webp&quality=lossless&width=1536&height=864" alt="Thumbnail Work 3" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
 
-        <!-- END OF PAGE GORILLA PRODUCTIONS BRANDING -->
+        <!-- Gorilla Productions Branding with Leaf Icon -->
         <div class="w-full flex justify-center mt-8 mb-8">
             <div class="relative inline-block select-none cursor-default group">
-                <!-- Enlarged name size with White Neon Glow and text-shine rules -->
                 <span id="branding-logo" class="branding-text-shine white-neon-glow font-bold tracking-widest text-sm uppercase">
                     Gorilla Productions
                 </span>
-                <!-- Enlarged White Leaf absolute pinned to bottom-right of ending 's' character -->
                 <i class="fa-solid fa-leaf text-white text-sm absolute -right-5 bottom-0.5 opacity-90 transition-transform duration-300 group-hover:scale-110"></i>
             </div>
         </div>
 
-        <!-- SOCIAL & CONTACT LINKS -->
+        <!-- Social Connections -->
         <div class="p-6 border-t border-zinc-900/60 bg-zinc-950/20">
             <h2 class="text-lg font-bold text-zinc-200 mb-4 flex items-center gap-2">
                 <i class="fa-solid fa-link text-purple-400"></i> Connections
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <!-- YouTube link -->
                 <a href="https://www.youtube.com/@gorillaxd133" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group">
                     <div class="flex items-center gap-3">
                         <i class="fa-brands fa-youtube text-2xl text-red-500 group-hover:scale-110 transition-transform"></i>
@@ -423,10 +341,7 @@
                             <p class="text-xs text-zinc-500">@gorillaxd133</p>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors"></i>
                 </a>
-
-                <!-- Twitch link -->
                 <a href="https://twitch.tv/gorillaxd133" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group">
                     <div class="flex items-center gap-3">
                         <i class="fa-brands fa-twitch text-2xl text-purple-500 group-hover:scale-110 transition-transform"></i>
@@ -435,54 +350,20 @@
                             <p class="text-xs text-zinc-500">gorillaxd133</p>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors"></i>
                 </a>
-
-                <!-- Discord Community Server -->
-                <a href="https://discord.gg/PmwDZN73bS" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-discord text-2xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
-                        <div>
-                            <p class="text-sm font-semibold text-zinc-200">Join Discord Server</p>
-                            <p class="text-xs text-zinc-500">PmwDZN73bS</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors"></i>
-                </a>
-
-                <!-- Discord Copyable Tag -->
-                <div onclick="copyDiscord()" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group cursor-pointer relative">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-user-tag text-2xl text-zinc-400 group-hover:scale-110 transition-transform"></i>
-                        <div>
-                            <p class="text-sm font-semibold text-zinc-200">Discord ID</p>
-                            <p id="discord-id" class="text-xs text-zinc-500">gorillaxd133</p>
-                        </div>
-                    </div>
-                    <span id="copy-toast" class="text-xs text-purple-400 font-medium opacity-0 transition-opacity duration-300">CLICK TO COPY</span>
-                </div>
             </div>
         </div>
     </main>
 
-    <!-- FULLSCREEN LIGHTBOX MODAL WITH ZOOM & PAN MECHANICS -->
+    <!-- Lightbox Modal -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-[10000] opacity-0 invisible flex items-center justify-center p-4 select-none overflow-hidden" onclick="closeLightbox(event)">
-        <!-- Close Button (X) -->
         <button class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl p-2 transition-colors focus:outline-none z-50 cursor-pointer" onclick="closeLightbox(event)">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <!-- Large Image Elements -->
-        <img id="lightbox-img" src="" alt="Enlarged Portfolio View" class="max-w-full max-h-[88vh] rounded-lg object-contain shadow-2xl border border-zinc-800/40 cursor-grab origin-center" onclick="handleImageClick(event)">
+        <img id="lightbox-img" src="" alt="Enlarged View" class="max-w-full max-h-[88vh] rounded-lg object-contain shadow-2xl border border-zinc-800/40 cursor-grab origin-center">
     </div>
 
-    <!-- FOOTER -->
-    <footer class="mt-8 text-center text-xs text-zinc-600">
-        &copy; 2026 gorillaxd133. Design system inspired by gun.lol & Figma frameworks.
-    </footer>
-
-    <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // Audio Controls Script
         const audio = document.getElementById('bg-music');
         const playIcon = document.getElementById('play-icon');
         const playText = document.getElementById('play-text');
@@ -492,7 +373,7 @@
                 audio.play().then(() => {
                     playIcon.className = "fa-solid fa-pause";
                     playText.innerText = "PAUSE";
-                }).catch(err => console.log("Audio playback error:", err));
+                }).catch(err => console.log(err));
             } else {
                 audio.pause();
                 playIcon.className = "fa-solid fa-play";
@@ -503,49 +384,18 @@
         function enterWebsite() {
             const entryScreen = document.getElementById('entry-screen');
             entryScreen.style.opacity = '0';
-            setTimeout(() => {
-                entryScreen.style.display = 'none';
-            }, 800);
-
-            // Trigger background audio on enter click
+            setTimeout(() => { entryScreen.style.display = 'none'; }, 800);
             toggleAudio();
         }
 
-        // Copy Discord Username
-        function copyDiscord() {
-            const discordId = document.getElementById('discord-id').innerText;
-            navigator.clipboard.writeText(discordId).then(() => {
-                const toast = document.getElementById('copy-toast');
-                toast.innerText = "COPIED!";
-                toast.classList.remove('opacity-0');
-                setTimeout(() => {
-                    toast.classList.add('opacity-0');
-                    setTimeout(() => { toast.innerText = "CLICK TO COPY"; }, 300);
-                }, 2000);
-            });
-        }
-
-        // Lightbox Functions
         const lightbox = document.getElementById('lightbox-modal');
         const lightboxImg = document.getElementById('lightbox-img');
 
-        let zoomScale = 1;
-        const minScale = 1;
-        const maxScale = 4;
-        const clickZoomTarget = 2.5;
-        
-        let isDragging = false;
-        let hasDragged = false;
-        let startX = 0, startY = 0;
-        let currentX = 0, currentY = 0;
-
         function openLightbox(element) {
-            const imgSrc = element.querySelector('img').src;
-            lightboxImg.src = imgSrc;
+            lightboxImg.src = element.querySelector('img').src;
             lightbox.classList.remove('invisible', 'opacity-0');
             lightbox.classList.add('opacity-100');
             document.body.style.overflow = 'hidden';
-            resetZoom();
         }
 
         function closeLightbox(event) {
@@ -555,114 +405,8 @@
             setTimeout(() => {
                 lightbox.classList.add('invisible');
                 document.body.style.overflow = '';
-                resetZoom();
             }, 300);
         }
-
-        function resetZoom() {
-            zoomScale = 1;
-            isDragging = false;
-            hasDragged = false;
-            currentX = 0;
-            currentY = 0;
-            updateTransform();
-        }
-
-        function updateTransform() {
-            lightboxImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${zoomScale})`;
-            if (zoomScale > 1) {
-                lightboxImg.style.cursor = isDragging ? 'grabbing' : 'grab';
-            } else {
-                lightboxImg.style.cursor = 'pointer';
-            }
-        }
-
-        function handleImageClick(event) {
-            event.stopPropagation();
-            
-            if (hasDragged) {
-                hasDragged = false;
-                return;
-            }
-
-            if (zoomScale > 1) {
-                resetZoom();
-            } else {
-                zoomScale = clickZoomTarget;
-                const rect = lightboxImg.getBoundingClientRect();
-                const mouseX = event.clientX - (rect.left + rect.width / 2);
-                const mouseY = event.clientY - (rect.top + rect.height / 2);
-                
-                const factor = zoomScale - 1;
-                currentX = -mouseX * factor;
-                currentY = -mouseY * factor;
-                updateTransform();
-            }
-        }
-
-        // Handle Scroll Wheel Zooming
-        lightbox.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            
-            const zoomIntensity = 0.15;
-            const oldScale = zoomScale;
-
-            if (e.deltaY < 0) {
-                zoomScale = Math.min(maxScale, zoomScale + zoomIntensity);
-            } else {
-                zoomScale = Math.max(minScale, zoomScale - zoomIntensity);
-            }
-
-            if (zoomScale !== oldScale) {
-                const rect = lightboxImg.getBoundingClientRect();
-                const mouseX = e.clientX - (rect.left + rect.width / 2);
-                const mouseY = e.clientY - (rect.top + rect.height / 2);
-
-                const factor = (zoomScale / oldScale) - 1;
-                currentX -= mouseX * factor;
-                currentY -= mouseY * factor;
-                updateTransform();
-            }
-
-            if (zoomScale === 1) {
-                currentX = 0;
-                currentY = 0;
-                updateTransform();
-            }
-        }, { passive: false });
-
-        // Mouse Drag / Pan Mechanics for Lightbox
-        lightboxImg.addEventListener('mousedown', (e) => {
-            if (zoomScale <= 1) return;
-            isDragging = true;
-            hasDragged = false;
-            startX = e.clientX - currentX;
-            startY = e.clientY - currentY;
-            lightboxImg.classList.add('dragging');
-            updateTransform();
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.clientX - startX;
-            const y = e.clientY - startY;
-
-            if (Math.abs(x - currentX) > 5 || Math.abs(y - currentY) > 5) {
-                hasDragged = true;
-            }
-
-            currentX = x;
-            currentY = y;
-            updateTransform();
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            lightboxImg.classList.remove('dragging');
-            updateTransform();
-        });
     </script>
 </body>
 </html>
