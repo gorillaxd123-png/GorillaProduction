@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorilla Production - Intro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0d0f12;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #ffffff;
+    }
+
+    #stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #1a202c 0%, #0d0f12 100%);
+    }
+
+    /* Animation Container */
+    .animation-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Falling Leaf */
+    .leaf {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      border-radius: 0% 100% 0% 100%;
+      box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+      transform-origin: center center;
+      animation: 
+        fallAndBlow 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .leaf::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(-45deg);
+    }
+
+    /* Leaf Trailing Particles */
+    .particle-trail {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #2ecc71;
+      border-radius: 50%;
+      filter: blur(1px);
+      box-shadow: 0 0 8px #2ecc71;
+      opacity: 0;
+      animation: trailFade 1.2s ease-out forwards;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fallAndBlow {
+      /* Stage 1: Fall gently with sway */
+      0% {
+        top: -10%;
+        left: 45%;
+        transform: rotate(0deg) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      25% {
+        left: 52%;
+        transform: rotate(45deg);
+      }
+      45% {
+        left: 47%;
+        transform: rotate(-20deg);
+      }
+      60% {
+        top: 52%;
+        left: 50%;
+        transform: rotate(15deg);
+        opacity: 1;
+      }
+      
+      /* Stage 2: Pause briefly at center landing spot */
+      65% {
+        top: 52%;
+        left: 50%;
+        transform: rotate(5deg) scale(1);
+        opacity: 1;
+      }
+
+      /* Stage 3: Wind blows it rapidly across screen leaving trail */
+      100% {
+        top: 40%;
+        left: 120%;
+        transform: rotate(720deg) scale(0.4);
+        opacity: 0;
+      }
+    }
+
+    /* Brand Reveal (Triggered after leaf wind blow) */
+    .brand-reveal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: revealLogo 1.5s 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      z-index: 2;
+    }
+
+    /* Leaf Logo Mark */
+    .logo-mark {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #2ecc71, #1abc9c);
+      border-radius: 0% 100% 0% 100%;
+      box-shadow: 0 0 30px rgba(46, 204, 113, 0.5);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      transform: rotate(-45deg);
+    }
+
+    .brand-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #ffffff, #a8ff78);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand-subtitle {
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: #2ecc71;
+      margin-top: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    @keyframes revealLogo {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="stage">
+    <!-- Intro Animation Elements -->
+    <div class="animation-container">
+      <div class="leaf" id="leaf"></div>
+    </div>
+
+    <!-- Final Brand Reveal -->
+    <div class="brand-reveal">
+      <div class="logo-mark"></div>
+      <h1 class="brand-title">Gorilla Production</h1>
+      <p class="brand-subtitle">Creative Studio</p>
+    </div>
+  </div>
+
+  <script>
+    // Generate particle trail following the leaf's movement path
+    const leaf = document.getElementById('leaf');
+    const container = document.querySelector('.animation-container');
+
+    function createParticle() {
+      const rect = leaf.getBoundingClientRect();
+      if (rect.opacity === 0 || rect.left > window.innerWidth) return;
+
+      const particle = document.createElement('div');
+      particle.className = 'particle-trail';
+      
+      // Position particle near the leaf center
+      particle.style.left = (rect.left + rect.width / 2) + 'px';
+      particle.style.top = (rect.top + rect.height / 2) + 'px';
+
+      container.appendChild(particle);
+
+      // Clean up DOM
+      setTimeout(() => {
+        particle.remove();
+      }, 1200);
+    }
+
+    // Spawn trail particles during animation window
+    const trailInterval = setInterval(createParticle, 40);
+    setTimeout(() => clearInterval(trailInterval), 5500);
+  </script>
+</body>
+</html>
