@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gorilla Productions | Intro Animation</title>
 
-    <!-- FontAwesome for the leaf shape -->
+    <!-- FontAwesome for diverse leaf shapes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts - Montserrat for sleek bold typography -->
@@ -27,89 +27,69 @@
             position: relative;
         }
 
-        /* Viewport Camera Container that pans down */
+        /* Viewport Camera Container for Vertical Pan */
         #viewport-camera {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
-            height: 200vh; /* Extended height for vertical panning */
-            transition: transform 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            height: 200vh;
+            transition: transform 3.2s cubic-bezier(0.77, 0, 0.175, 1); /* Custom smooth slow-to-fast easing */
             will-change: transform;
         }
 
-        /* State trigger to pan camera down */
         .pan-down {
             transform: translateY(-100vh);
         }
 
-        /* SECTION 1: TOP WORLD (TREE & CANOPY) */
+        /* SECTION 1: TOP WORLD (TREE AT CORNER) */
         .world-top {
             height: 100vh;
             width: 100vw;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* Leaf-based Tree Structure Container */
+        /* Corner Tree Styling & Positioning */
         .tree-container {
-            position: relative;
-            width: 400px;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Stylized Minimal Tree Trunk */
-        .tree-trunk {
-            position: absolute;
-            bottom: 0;
-            width: 24px;
-            height: 280px;
-            background: linear-gradient(180deg, #2a2a35 0%, #121218 100%);
-            border-radius: 12px 12px 0 0;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-        }
-
-        .tree-branch-left, .tree-branch-right {
-            position: absolute;
-            background: #2a2a35;
-            height: 10px;
-            border-radius: 5px;
-        }
-        .tree-branch-left {
-            width: 90px;
-            top: 120px;
-            left: 125px;
-            transform: rotate(-25deg);
-        }
-        .tree-branch-right {
-            width: 100px;
-            top: 90px;
-            right: 110px;
-            transform: rotate(20deg);
-        }
-
-        /* Canopy composed purely of white glowing leaves */
-        .tree-canopy {
             position: absolute;
             top: 20px;
-            width: 320px;
-            height: 260px;
+            right: 40px;
+            width: 480px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Organic Curved Tree Trunk & Branches */
+        .tree-trunk-svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+        }
+
+        /* Rich Canopy constructed from various leaf shapes */
+        .tree-canopy {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 400px;
+            height: 380px;
+            z-index: 2;
         }
 
         .canopy-leaf {
             position: absolute;
             color: #ffffff;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-            animation: gentleSway 3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.85));
+            animation: organicSway 3.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
         }
 
-        @keyframes gentleSway {
-            0% { transform: rotate(-5deg) scale(0.98); }
-            100% { transform: rotate(8deg) scale(1.05); }
+        @keyframes organicSway {
+            0% { transform: rotate(-8deg) scale(0.95); }
+            100% { transform: rotate(10deg) scale(1.06); }
         }
 
         /* SECTION 2: BOTTOM WORLD (GROUND & REVEAL) */
@@ -118,17 +98,16 @@
             width: 100vw;
             position: relative;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* Ground line (Black fill with gray outline) */
+        /* Black and Gray Outline Ground */
         .ground-wrapper {
             position: absolute;
             bottom: 0;
             width: 100vw;
-            height: 160px;
+            height: 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -137,8 +116,8 @@
         .ground-line {
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent 5%, #4a4a5a 25%, #8a8a9e 50%, #4a4a5a 75%, transparent 95%);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(90deg, transparent 0%, #4a4a5a 20%, #9a9ab0 50%, #4a4a5a 80%, transparent 100%);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
         }
 
         .ground-fill {
@@ -147,81 +126,95 @@
             background: #000000;
         }
 
-        /* Hero Falling Leaf element traveling across screens */
-        #falling-leaf {
+        /* HERO TRAVELLING LEAF ELEMENT */
+        #hero-leaf {
             position: absolute;
-            top: 220px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 180px;
+            right: 220px;
             font-size: 2.8rem;
             color: #ffffff;
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9))
                     drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-            z-index: 100;
+            z-index: 500;
             opacity: 0;
             pointer-events: none;
+            will-change: transform, opacity;
         }
 
-        /* Animation Keyframes for the falling leaf path */
+        /* Step 1: Leaf falls from corner tree to the ground */
         .animate-leaf-drop {
-            animation: leafFallingPath 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: leafFallingToGround 4.2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
         }
 
-        @keyframes leafFallingPath {
+        @keyframes leafFallingToGround {
             0% {
                 opacity: 1;
-                transform: translate(-50%, 0) rotate(0deg);
+                transform: translate(0, 0) rotate(0deg);
             }
             25% {
-                transform: translate(calc(-50% + 70px), 250px) rotate(45deg);
+                transform: translate(-120px, 280px) rotate(-45deg);
             }
             50% {
-                transform: translate(calc(-50% - 60px), 600px) rotate(-30deg);
+                transform: translate(-280px, 620px) rotate(35deg);
             }
             75% {
-                transform: translate(calc(-50% + 40px), 950px) rotate(20deg);
+                transform: translate(-420px, 1020px) rotate(-20deg);
             }
             92% {
-                transform: translate(-50%, 1285px) rotate(70deg);
                 opacity: 1;
+                transform: translate(-500px, 1340px) rotate(60deg);
             }
-            /* Land on ground */
             100% {
-                transform: translate(-50%, 1295px) rotate(85deg);
                 opacity: 1;
+                transform: translate(-520px, 1350px) rotate(80deg); /* Touch ground */
             }
         }
 
-        /* Wind Blowing Effect */
-        .animate-leaf-blow {
-            animation: leafBlowAway 1.2s ease-in forwards !important;
+        /* Step 2: Wind blows the leaf up off the ground */
+        .animate-leaf-wind-blow {
+            animation: leafWindBlowUp 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
         }
 
-        @keyframes leafBlowAway {
+        @keyframes leafWindBlowUp {
             0% {
-                transform: translate(-50%, 1295px) rotate(85deg);
+                transform: translate(-520px, 1350px) rotate(80deg) scale(1);
                 opacity: 1;
             }
-            30% {
-                transform: translate(120px, 1260px) rotate(180deg) scale(1.1);
+            40% {
+                transform: translate(-200px, 1220px) rotate(240deg) scale(1.3);
                 opacity: 0.9;
             }
             100% {
-                transform: translate(800px, 1180px) rotate(480deg) scale(0.2);
-                opacity: 0;
-                filter: blur(8px);
+                /* Float into exact middle center screen area */
+                transform: translate(calc(-50vw + 220px + 330px), 1000px) rotate(360deg) scale(1.1);
+                opacity: 1;
             }
         }
 
-        /* Wind trail lines canvas */
+        /* Step 3: Leaf returns smoothly to attach to the end of the text */
+        .animate-leaf-return-to-text {
+            animation: returnToTextPosition 2.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+        }
+
+        @keyframes returnToTextPosition {
+            0% {
+                transform: translate(calc(-50vw + 220px + 330px), 1000px) rotate(360deg) scale(1.1);
+            }
+            100% {
+                /* Target exact inline offset at the end of Gorilla Productions */
+                transform: translate(calc(-50vw + 220px + 382px), 982px) rotate(15deg) scale(0.65);
+            }
+        }
+
+        /* Wind canvas overlays */
         #wind-canvas {
             position: absolute;
             inset: 0;
             pointer-events: none;
-            z-index: 90;
+            z-index: 100;
         }
 
-        /* Gorilla Productions Final Branding Reveal */
+        /* CENTRED GORILLA PRODUCTIONS BRANDING TITLE */
         .branding-title {
             position: relative;
             z-index: 200;
@@ -231,15 +224,15 @@
             letter-spacing: 0.25em;
             text-align: center;
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+            transform: scale(0.92);
+            transition: opacity 1.8s ease, transform 1.8s ease;
 
             background: linear-gradient(
                 110deg,
-                #7a7a8a 0%,
+                #6a6a7a 0%,
                 #ffffff 45%,
                 #ffffff 55%,
-                #7a7a8a 100%
+                #6a6a7a 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -248,10 +241,7 @@
 
         .branding-title.show {
             opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9))
-                    drop-shadow(0 0 25px rgba(255, 255, 255, 0.6))
-                    drop-shadow(0 0 45px rgba(255, 255, 255, 0.3));
+            transform: scale(1);
             animation: whiteNeonGlow 3s ease-in-out infinite alternate,
                        textSheenLoop 4s linear infinite;
         }
@@ -262,9 +252,9 @@
                         drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
             }
             100% {
-                filter: drop-shadow(0 0 14px rgba(255, 255, 255, 1))
-                        drop-shadow(0 0 32px rgba(255, 255, 255, 0.8))
-                        drop-shadow(0 0 60px rgba(255, 255, 255, 0.4));
+                filter: drop-shadow(0 0 16px rgba(255, 255, 255, 1))
+                        drop-shadow(0 0 35px rgba(255, 255, 255, 0.85))
+                        drop-shadow(0 0 65px rgba(255, 255, 255, 0.4));
             }
         }
 
@@ -273,32 +263,22 @@
             100% { background-position: 200% center; }
         }
 
-        .attached-leaf {
+        /* Invisible placeholder box reserving exact end space for leaf */
+        .leaf-spacer {
             display: inline-block;
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin-left: -0.15em;
-            vertical-align: middle;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
-            animation: subtlePulse 2s ease-in-out infinite alternate;
+            width: 1.8rem;
         }
 
-        @keyframes subtlePulse {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.15) rotate(12deg); }
-        }
-
-        /* Responsive styling for smaller displays */
+        /* Responsive scaling */
         @media (max-width: 768px) {
             .branding-title {
-                font-size: 1.8rem;
-                letter-spacing: 0.15em;
-            }
-            .attached-leaf {
-                font-size: 1.1rem;
+                font-size: 1.7rem;
+                letter-spacing: 0.12em;
             }
             .tree-container {
-                transform: scale(0.85);
+                transform: scale(0.65);
+                right: -40px;
+                top: -20px;
             }
         }
     </style>
@@ -307,32 +287,36 @@
 
     <div id="viewport-camera">
         
-        <!-- TOP VIEWPORT: TREE MADE OF WHITE LEAVES -->
+        <!-- TOP VIEWPORT: CORNER TREE WITH VARIED LEAF SHAPES -->
         <div class="world-top">
             <div class="tree-container">
-                <div class="tree-trunk"></div>
-                <div class="tree-branch-left"></div>
-                <div class="tree-branch-right"></div>
-                
-                <!-- Canopy constructed from grouped white leaves -->
+                <!-- Smooth SVG Curving Trunk & Branches -->
+                <svg class="tree-trunk-svg" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M260 600 C 270 480, 240 380, 220 280 C 200 180, 240 100, 250 40" stroke="#22222d" stroke-width="28" stroke-linecap="round"/>
+                    <path d="M230 320 C 180 260, 130 240, 90 220" stroke="#22222d" stroke-width="16" stroke-linecap="round"/>
+                    <path d="M235 210 C 280 160, 310 140, 340 120" stroke="#22222d" stroke-width="14" stroke-linecap="round"/>
+                    <path d="M210 390 C 160 350, 120 340, 80 330" stroke="#22222d" stroke-width="18" stroke-linecap="round"/>
+                </svg>
+
+                <!-- Canopy built with varied FontAwesome leaf icon shapes -->
                 <div class="tree-canopy" id="tree-canopy">
-                    <!-- Leaves generated dynamically via JS for natural shape -->
+                    <!-- Javascript populates multiple leaf shapes dynamically -->
                 </div>
             </div>
         </div>
 
-        <!-- HERO FALLING LEAF ELEMENT -->
-        <div id="falling-leaf">
+        <!-- HERO TRAVELLING LEAF ELEMENT -->
+        <div id="hero-leaf">
             <i class="fa-solid fa-leaf"></i>
         </div>
 
-        <!-- BOTTOM VIEWPORT: GROUND & TEXT REVEAL -->
+        <!-- BOTTOM VIEWPORT: GROUND & CENTERED TEXT REVEAL -->
         <div class="world-bottom">
             <canvas id="wind-canvas"></canvas>
 
-            <!-- Final Reveal Branding Font -->
+            <!-- Centered Gorilla Productions Text -->
             <h1 id="title" class="branding-title">
-                Gorilla Productions<span class="attached-leaf"><i class="fa-solid fa-leaf"></i></span>
+                Gorilla Productions<span class="leaf-spacer"></span>
             </h1>
 
             <!-- Black & Gray Outline Ground -->
@@ -345,62 +329,76 @@
     </div>
 
     <script>
-        // 1. DYNAMICALLY BUILD THE TREE CANOPY USING WHITE LEAF ICONS
+        // 1. GENERATE A DETAILED CORNER CANOPY WITH VARIED LEAF SHAPES
         const canopy = document.getElementById('tree-canopy');
+        
+        // FontAwesome icon classes for various leaf shapes
+        const leafIcons = [
+            'fa-solid fa-leaf',         // Standard leaf
+            'fa-solid fa-tree-city',    // Organic cluster shape
+            'fa-brands fa-envira',      // Curved dual leaf
+            'fa-solid fa-seedling',     // Twin sprout leaf
+            'fa-solid fa-clover'        // Soft leaf shape
+        ];
+
         const leafPositions = [
-            { top: '10px', left: '120px', size: '2.5rem', rot: '0deg' },
-            { top: '25px', left: '80px', size: '2rem', rot: '-20deg' },
-            { top: '25px', left: '170px', size: '2.2rem', rot: '25deg' },
-            { top: '50px', left: '40px', size: '1.8rem', rot: '-40deg' },
-            { top: '55px', left: '210px', size: '2rem', rot: '35deg' },
-            { top: '80px', left: '20px', size: '2.2rem', rot: '-50deg' },
-            { top: '85px', left: '130px', size: '2.8rem', rot: '10deg' },
-            { top: '80px', left: '240px', size: '1.9rem', rot: '45deg' },
-            { top: '120px', left: '60px', size: '2.4rem', rot: '-15deg' },
-            { top: '120px', left: '180px', size: '2.3rem', rot: '20deg' },
-            { top: '150px', left: '100px', size: '2.1rem', rot: '-5deg' },
-            { top: '150px', left: '150px', size: '2rem', rot: '15deg' },
-            { top: '40px', left: '110px', size: '2.6rem', rot: '-10deg' },
-            { top: '90px', left: '90px', size: '2.2rem', rot: '-30deg' },
-            { top: '100px', left: '170px', size: '2.4rem', rot: '15deg' }
+            { top: '10px', left: '180px', size: '2.5rem', rot: '10deg', iconIdx: 0 },
+            { top: '25px', left: '120px', size: '2.1rem', rot: '-20deg', iconIdx: 2 },
+            { top: '30px', left: '240px', size: '2.4rem', rot: '30deg', iconIdx: 1 },
+            { top: '60px', left: '80px', size: '2.8rem', rot: '-35deg', iconIdx: 0 },
+            { top: '70px', left: '290px', size: '2.2rem', rot: '45deg', iconIdx: 2 },
+            { top: '90px', left: '160px', size: '3.2rem', rot: '5deg', iconIdx: 3 },
+            { top: '120px', left: '50px', size: '2.6rem', rot: '-45deg', iconIdx: 0 },
+            { top: '130px', left: '230px', size: '2.9rem', rot: '20deg', iconIdx: 1 },
+            { top: '140px', left: '320px', size: '2.3rem', rot: '50deg', iconIdx: 2 },
+            { top: '180px', left: '100px', size: '3.0rem', rot: '-15deg', iconIdx: 3 },
+            { top: '190px', left: '200px', size: '2.7rem', rot: '15deg', iconIdx: 0 },
+            { top: '220px', left: '280px', size: '2.5rem', rot: '35deg', iconIdx: 4 },
+            { top: '240px', left: '140px', size: '2.8rem', rot: '-25deg', iconIdx: 2 },
+            { top: '280px', left: '80px', size: '2.4rem', rot: '-40deg', iconIdx: 0 }
         ];
 
         leafPositions.forEach((pos, idx) => {
             const leaf = document.createElement('i');
-            leaf.className = 'fa-solid fa-leaf canopy-leaf';
+            leaf.className = `${leafIcons[pos.iconIdx]} canopy-leaf`;
             leaf.style.top = pos.top;
             leaf.style.left = pos.left;
             leaf.style.fontSize = pos.size;
             leaf.style.transform = `rotate(${pos.rot})`;
-            leaf.style.animationDelay = `${(idx % 5) * 0.4}s`;
+            leaf.style.animationDelay = `${(idx % 6) * 0.35}s`;
             canopy.appendChild(leaf);
         });
 
-        // 2. TIMED ANIMATION SEQUENCE CONTROLLER
+        // 2. PRECISE TIMED ANIMATION SEQUENCER
         const camera = document.getElementById('viewport-camera');
-        const fallingLeaf = document.getElementById('falling-leaf');
+        const heroLeaf = document.getElementById('hero-leaf');
         const title = document.getElementById('title');
 
-        // Step A: Trigger the leaf detachment & fall (0.5s)
+        // Step A: Detach and fall from corner tree (0.4s)
         setTimeout(() => {
-            fallingLeaf.classList.add('animate-leaf-drop');
-        }, 500);
+            heroLeaf.classList.add('animate-leaf-drop');
+        }, 400);
 
-        // Step B: Pan Viewport Downward tracking the falling leaf (1.8s)
+        // Step B: Viewport camera smooth pan down to ground (1.8s)
         setTimeout(() => {
             camera.classList.add('pan-down');
         }, 1800);
 
-        // Step C: Leaf lands on ground, blow away by wind gust (4.3s)
+        // Step C: Leaf touches ground -> Wind blows leaf up toward center (4.6s)
         setTimeout(() => {
-            fallingLeaf.classList.add('animate-leaf-blow');
+            heroLeaf.classList.add('animate-leaf-wind-blow');
             triggerWindCanvasEffect();
-        }, 4300);
+        }, 4600);
 
-        // Step D: Reveal Gorilla Productions Glowing Text (5.2s)
+        // Step D: Reveal Centered Title (5.6s)
         setTimeout(() => {
             title.classList.add('show');
-        }, 5200);
+        }, 5600);
+
+        // Step E: Leaf smoothly returns to lock onto the end of 'Productions' (6.4s)
+        setTimeout(() => {
+            heroLeaf.classList.add('animate-leaf-return-to-text');
+        }, 6400);
 
         // 3. CANVAS WIND STREAM LINES EFFECT
         function triggerWindCanvasEffect() {
@@ -410,14 +408,14 @@
             canvas.height = window.innerHeight;
 
             const lines = [];
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 lines.push({
-                    x: Math.random() * -300,
-                    y: canvas.height - 180 + (Math.random() * 100 - 50),
-                    length: 80 + Math.random() * 120,
-                    speed: 18 + Math.random() * 15,
-                    width: 1 + Math.random() * 2,
-                    alpha: 0.3 + Math.random() * 0.5
+                    x: Math.random() * -200 - 100,
+                    y: canvas.height - 180 + (Math.random() * 120 - 60),
+                    length: 100 + Math.random() * 150,
+                    speed: 20 + Math.random() * 18,
+                    width: 1 + Math.random() * 2.5,
+                    alpha: 0.3 + Math.random() * 0.6
                 });
             }
 
@@ -427,10 +425,10 @@
                 lines.forEach(line => {
                     ctx.beginPath();
                     ctx.moveTo(line.x, line.y);
-                    ctx.lineTo(line.x + line.length, line.y);
+                    ctx.lineTo(line.x + line.length, line.y - 30);
                     ctx.strokeStyle = `rgba(255, 255, 255, ${line.alpha})`;
                     ctx.lineWidth = line.width;
-                    ctx.shadowBlur = 8;
+                    ctx.shadowBlur = 10;
                     ctx.shadowColor = '#ffffff';
                     ctx.stroke();
 
@@ -438,7 +436,7 @@
                 });
 
                 frames++;
-                if (frames < 70) {
+                if (frames < 75) {
                     requestAnimationFrame(renderWind);
                 } else {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
