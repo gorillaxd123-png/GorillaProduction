@@ -25,6 +25,7 @@
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
             position: relative;
+            user-select: none;
         }
 
         /* Viewport Camera Container */
@@ -34,12 +35,17 @@
             left: 0;
             width: 100vw;
             height: 200vh;
-            transition: transform 3.2s cubic-bezier(0.77, 0, 0.175, 1);
-            will-change: transform;
+            transition: transform 3.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            will-change: transform, opacity;
         }
 
         .pan-down {
             transform: translateY(-100vh);
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            pointer-events: none;
         }
 
         /* SECTION 1: TOP WORLD (TREE AT TOP-LEFT) */
@@ -52,10 +58,10 @@
         /* Top-Left Bending Tree Container */
         .tree-container {
             position: absolute;
-            top: -60px;
-            left: -80px;
-            width: 550px;
-            height: 550px;
+            top: -70px;
+            left: -90px;
+            width: 600px;
+            height: 600px;
         }
 
         /* Curved SVG Trunk Bending to the Right */
@@ -69,13 +75,13 @@
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
         }
 
-        /* Canopy with varied leaf shapes */
+        /* Canopy with high density of varied leaves */
         .tree-canopy {
             position: absolute;
-            top: 80px;
-            left: 120px;
-            width: 380px;
-            height: 350px;
+            top: 40px;
+            left: 90px;
+            width: 480px;
+            height: 420px;
             z-index: 2;
         }
 
@@ -87,8 +93,8 @@
         }
 
         @keyframes organicSway {
-            0% { transform: rotate(-8deg) scale(0.95); }
-            100% { transform: rotate(10deg) scale(1.06); }
+            0% { transform: rotate(-12deg) scale(0.92); }
+            100% { transform: rotate(14deg) scale(1.08); }
         }
 
         /* SECTION 2: BOTTOM WORLD (GROUND & BRANDING) */
@@ -97,14 +103,16 @@
             width: 100vw;
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* Black & Gray Outline Ground */
+        /* Centered Black & Gray Outline Ground */
         .ground-wrapper {
             position: absolute;
             bottom: 0;
+            left: 0;
             width: 100vw;
             height: 140px;
             display: flex;
@@ -115,8 +123,8 @@
         .ground-line {
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent 0%, #4a4a5a 20%, #9a9ab0 50%, #4a4a5a 80%, transparent 100%);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+            background: linear-gradient(90deg, transparent 0%, #4a4a5a 25%, #a0a0b8 50%, #4a4a5a 75%, transparent 100%);
+            box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
         }
 
         .ground-fill {
@@ -125,7 +133,7 @@
             background: #000000;
         }
 
-        /* HERO TRAVELLING LEAF ELEMENT */
+        /* HERO TRAVELLING LEAF ELEMENT (X) */
         #hero-leaf {
             position: absolute;
             top: 220px;
@@ -140,7 +148,7 @@
             will-change: transform, opacity;
         }
 
-        /* Step 1: Leaf falls from top-left tree to the ground */
+        /* Step 1: Leaf falls from top-left tree to touch ground */
         .animate-leaf-drop {
             animation: leafFallingToGround 4.2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
         }
@@ -165,7 +173,7 @@
             }
             100% {
                 opacity: 1;
-                transform: translate(240px, 1350px) rotate(-80deg); /* Touch ground */
+                transform: translate(240px, 1350px) rotate(-80deg); /* Touches Ground */
             }
         }
 
@@ -184,24 +192,24 @@
                 opacity: 0.9;
             }
             100% {
-                /* Target near center-left to sweep through the title */
-                transform: translate(calc(50vw - 320px - 300px), 1000px) rotate(-360deg) scale(1.1);
+                /* Target left side of screen to start text trail */
+                transform: translate(calc(50vw - 380px), 1000px) rotate(-360deg) scale(1.1);
                 opacity: 1;
             }
         }
 
-        /* Step 3: Leaf returns directly to position X at the end of Gorilla Productions */
+        /* Step 3: Leaf returns directly to position X (Gorilla ProductionsX) */
         .animate-leaf-return-to-text {
             animation: returnToTextPosition 2.0s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
         }
 
         @keyframes returnToTextPosition {
             0% {
-                transform: translate(calc(50vw - 320px - 300px), 1000px) rotate(-360deg) scale(1.1);
+                transform: translate(calc(50vw - 380px), 1000px) rotate(-360deg) scale(1.1);
             }
             100% {
-                /* Position X right after Gorilla Productions */
-                transform: translate(calc(50vw - 320px + 365px), 982px) rotate(15deg) scale(0.65);
+                /* Precise Leaf Position X right after "Gorilla Productions" */
+                transform: translate(calc(50vw + 345px), 982px) rotate(18deg) scale(0.7);
             }
         }
 
@@ -213,14 +221,23 @@
             z-index: 100;
         }
 
-        /* CENTERED TITLE WITH TRAIL GLOW */
-        .branding-title {
+        /* CENTERED CONTAINER FOR BRANDING AND ENTER BUTTON */
+        .center-content-wrapper {
             position: relative;
             z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        /* CENTERED TITLE WITH TRAIL GLOW */
+        .branding-title {
             font-size: 3.5rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.22em;
             text-align: center;
             opacity: 0;
             transform: scale(0.95);
@@ -263,22 +280,55 @@
             100% { background-position: 200% center; }
         }
 
-        /* Spacer keeping text alignment clean for Leaf Position X */
+        /* Spacer keeping exact spot open for Leaf Position X */
         .leaf-spacer {
             display: inline-block;
-            width: 1.8rem;
+            width: 2rem;
+        }
+
+        /* CLICK TO ENTER PROMPT */
+        .click-to-enter {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: rgba(255, 255, 255, 0.85);
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 1.2s ease, transform 0.3s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        .click-to-enter.show {
+            opacity: 1;
+        }
+
+        .click-to-enter:hover {
+            transform: scale(1.08);
+            color: #ffffff;
+            text-shadow: 0 0 18px rgba(255, 255, 255, 1);
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
         }
 
         /* Responsive scaling */
         @media (max-width: 768px) {
             .branding-title {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
                 letter-spacing: 0.12em;
             }
+            .click-to-enter {
+                font-size: 0.85rem;
+                letter-spacing: 0.2em;
+            }
             .tree-container {
-                transform: scale(0.7);
-                left: -110px;
-                top: -80px;
+                transform: scale(0.65);
+                left: -120px;
+                top: -90px;
             }
         }
     </style>
@@ -287,37 +337,40 @@
 
     <div id="viewport-camera">
         
-        <!-- TOP VIEWPORT: TOP-LEFT BENDING TREE -->
+        <!-- TOP VIEWPORT: TOP-LEFT BENDING TREE WITH FULL CANOPY -->
         <div class="world-top">
             <div class="tree-container">
                 <!-- SVG Trunk extending off top-left screen and bending to the right -->
                 <svg class="tree-trunk-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 -20 C 80 80, 140 180, 220 260 C 280 320, 360 380, 420 420" stroke="#22222d" stroke-width="32" stroke-linecap="round"/>
-                    <path d="M140 180 C 220 140, 290 120, 370 110" stroke="#22222d" stroke-width="18" stroke-linecap="round"/>
+                    <path d="M0 -20 C 80 80, 140 180, 220 260 C 280 320, 360 380, 420 420" stroke="#22222d" stroke-width="34" stroke-linecap="round"/>
+                    <path d="M140 180 C 220 140, 290 120, 370 110" stroke="#22222d" stroke-width="20" stroke-linecap="round"/>
                     <path d="M220 260 C 290 230, 350 220, 420 210" stroke="#22222d" stroke-width="16" stroke-linecap="round"/>
                     <path d="M100 120 C 180 80, 250 60, 320 50" stroke="#22222d" stroke-width="14" stroke-linecap="round"/>
                 </svg>
 
-                <!-- Canopy with diverse leaf types -->
+                <!-- Dense Canopy -->
                 <div class="tree-canopy" id="tree-canopy"></div>
             </div>
         </div>
 
-        <!-- HERO TRAVELLING LEAF ELEMENT -->
+        <!-- HERO TRAVELLING LEAF ELEMENT (X) -->
         <div id="hero-leaf">
             <i class="fa-solid fa-leaf"></i>
         </div>
 
-        <!-- BOTTOM VIEWPORT: GROUND & CENTERED TITLE -->
+        <!-- BOTTOM VIEWPORT: GROUND & CENTERED CONTENT -->
         <div class="world-bottom">
             <canvas id="wind-canvas"></canvas>
 
-            <!-- Centered Title -->
-            <h1 id="title" class="branding-title">
-                Gorilla Productions<span class="leaf-spacer"></span>
-            </h1>
+            <!-- Centered Text & Click Prompt -->
+            <div class="center-content-wrapper">
+                <h1 id="title" class="branding-title">
+                    Gorilla Productions<span class="leaf-spacer"></span>
+                </h1>
+                <div id="enter-btn" class="click-to-enter">Click To Enter</div>
+            </div>
 
-            <!-- Black & Gray Outline Ground -->
+            <!-- Centered Black & Gray Outline Ground -->
             <div class="ground-wrapper">
                 <div class="ground-line"></div>
                 <div class="ground-fill"></div>
@@ -327,7 +380,7 @@
     </div>
 
     <script>
-        // 1. GENERATE CANOPY WITH VARIED LEAF SHAPES
+        // 1. DENSE CANOPY LEAF GENERATION (OVER 35 LEAVES)
         const canopy = document.getElementById('tree-canopy');
         
         const leafIcons = [
@@ -337,19 +390,19 @@
             'fa-solid fa-clover'        // Soft leaf shape
         ];
 
-        const leafPositions = [
-            { top: '10px', left: '100px', size: '2.5rem', rot: '20deg', iconIdx: 0 },
-            { top: '30px', left: '180px', size: '2.2rem', rot: '45deg', iconIdx: 1 },
-            { top: '20px', left: '250px', size: '2.6rem', rot: '10deg', iconIdx: 2 },
-            { top: '60px', left: '60px', size: '2.8rem', rot: '-15deg', iconIdx: 0 },
-            { top: '70px', left: '140px', size: '3.1rem', rot: '30deg', iconIdx: 3 },
-            { top: '80px', left: '220px', size: '2.4rem', rot: '50deg', iconIdx: 1 },
-            { top: '110px', left: '100px', size: '2.7rem', rot: '15deg', iconIdx: 0 },
-            { top: '120px', left: '180px', size: '2.9rem', rot: '35deg', iconIdx: 2 },
-            { top: '130px', left: '260px', size: '2.3rem', rot: '60deg', iconIdx: 1 },
-            { top: '160px', left: '140px', size: '2.6rem', rot: '25deg', iconIdx: 3 },
-            { top: '170px', left: '220px', size: '2.8rem', rot: '40deg', iconIdx: 0 }
-        ];
+        // Grid overlay for lush canopy density
+        const leafPositions = [];
+        for (let r = 0; r < 6; r++) {
+            for (let c = 0; c < 6; c++) {
+                leafPositions.push({
+                    top: `${20 + r * 55 + Math.random() * 20}px`,
+                    left: `${40 + c * 65 + Math.random() * 25}px`,
+                    size: `${(2.0 + Math.random() * 1.4).toFixed(1)}rem`,
+                    rot: `${Math.floor(Math.random() * 80 - 40)}deg`,
+                    iconIdx: Math.floor(Math.random() * leafIcons.length)
+                });
+            }
+        }
 
         leafPositions.forEach((pos, idx) => {
             const leaf = document.createElement('i');
@@ -358,7 +411,7 @@
             leaf.style.left = pos.left;
             leaf.style.fontSize = pos.size;
             leaf.style.transform = `rotate(${pos.rot})`;
-            leaf.style.animationDelay = `${(idx % 5) * 0.35}s`;
+            leaf.style.animationDelay = `${(idx % 7) * 0.25}s`;
             canopy.appendChild(leaf);
         });
 
@@ -366,6 +419,7 @@
         const camera = document.getElementById('viewport-camera');
         const heroLeaf = document.getElementById('hero-leaf');
         const title = document.getElementById('title');
+        const enterBtn = document.getElementById('enter-btn');
 
         // Step A: Leaf falls from top-left tree (0.4s)
         setTimeout(() => {
@@ -383,17 +437,29 @@
             triggerWindCanvasEffect();
         }, 4600);
 
-        // Step D: Gorilla Productions reveals as trail behind the blowing leaf (5.4s)
+        // Step D: Gorilla Productions reveals as trail behind blowing leaf (5.4s)
         setTimeout(() => {
             title.classList.add('show');
         }, 5400);
 
-        // Step E: Leaf returns to exact position X after Productions (6.6s)
+        // Step E: Leaf returns to position X (Gorilla ProductionsX) (6.6s)
         setTimeout(() => {
             heroLeaf.classList.add('animate-leaf-return-to-text');
         }, 6600);
 
-        // 3. CANVAS WIND STREAM LINES EFFECT
+        // Step F: Show "Click To Enter" prompt (8.2s)
+        setTimeout(() => {
+            enterBtn.classList.add('show');
+        }, 8200);
+
+        // 3. CLICK TO ENTER -> BLANK SCREEN TRANSITION
+        document.body.addEventListener('click', () => {
+            if (enterBtn.classList.contains('show')) {
+                camera.classList.add('fade-out');
+            }
+        });
+
+        // 4. CANVAS WIND STREAM LINES EFFECT
         function triggerWindCanvasEffect() {
             const canvas = document.getElementById('wind-canvas');
             const ctx = canvas.getContext('2d');
@@ -401,12 +467,12 @@
             canvas.height = window.innerHeight;
 
             const lines = [];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 35; i++) {
                 lines.push({
                     x: Math.random() * -200 - 100,
                     y: canvas.height - 180 + (Math.random() * 120 - 60),
-                    length: 100 + Math.random() * 150,
-                    speed: 20 + Math.random() * 18,
+                    length: 120 + Math.random() * 160,
+                    speed: 22 + Math.random() * 18,
                     width: 1 + Math.random() * 2.5,
                     alpha: 0.3 + Math.random() * 0.6
                 });
