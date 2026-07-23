@@ -3,188 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gorillaxd133 | Portfolio</title>
+    <title>Gorilla Productions</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for icons -->
+    <!-- FontAwesome for the white leaf icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #08080c;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-
-        /* Entry Screen Styles */
-        #entry-screen {
-            position: fixed;
-            inset: 0;
-            background-color: #08080c;
-            z-index: 9999;
+            color: #ffffff;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
-            cursor: pointer;
         }
 
-        /* Leaf Flying & Swinging Animation */
-        @keyframes leafFallAndSwing {
-            0% {
-                transform: translateY(-100px) translateX(-50px) rotate(0deg);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(20px) translateX(60px) rotate(45deg);
-            }
-            100% {
-                transform: translateY(120px) translateX(-40px) rotate(-25deg);
-                opacity: 0;
-            }
-        }
-        
-        .leaf-animation {
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.85);
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
-            animation: leafFallAndSwing 4s ease-in-out infinite;
-        }
-
-        /* Ambient White Background Leaves Animation */
-        @keyframes ambientLeaf {
-            0% {
-                transform: translateY(-5vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(105vh) translateX(30px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .ambient-leaf-container {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .ambient-leaf {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 1.2rem;
-            animation: ambientLeaf 12s linear infinite;
-            top: -5vh;
-        }
-
-        /* Custom glow effect */
-        .glow-glow {
-            text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
-        }
-
-        /* White Neon Glow effect */
-        .white-neon-glow {
-            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8),
-                         0 0 12px rgba(255, 255, 255, 0.5),
-                         0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Glassmorphism styling */
-        .glass-card {
-            background: rgba(15, 15, 25, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            position: relative;
-            z-index: 10;
-        }
-
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .hover-lift:hover {
-            transform: translateY(-5px) scale(1.01);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.2);
-        }
-
+        /* Subtle dark tech grid background */
         .grid-bg {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 32px 32px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Hero White Neon Glow Effect */
+        .white-neon-glow {
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.9),
+                         0 0 16px rgba(255, 255, 255, 0.6),
+                         0 0 30px rgba(255, 255, 255, 0.3);
         }
 
-        /* Lightbox Modal Styles */
-        #lightbox-modal {
-            transition: opacity 0.3s ease, visibility 0.3s;
-        }
-        
-        #lightbox-img {
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
-        }
-
-        .dragging {
-            transition: none !important;
-        }
-
-        /* Hover Shine Effect */
-        .thumbnail-shine {
-            position: relative;
-            overflow: hidden;
-        }
-        .thumbnail-shine::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.25) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: skewX(-25deg);
-            pointer-events: none;
-            transition: none;
-        }
-        .thumbnail-shine:hover::after {
-            left: 150%;
-            transition: left 0.75s ease-in-out;
-        }
-
-        /* Text Shine Effect */
+        /* Continuous Text Shine Animation Loop */
         @keyframes textShineAnimation {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
@@ -194,219 +49,104 @@
             background: linear-gradient(
                 90deg,
                 #ffffff 0%,
-                #d4d4d8 35%,
+                #a1a1aa 25%,
                 #ffffff 50%,
-                #d4d4d8 65%,
+                #a1a1aa 75%,
                 #ffffff 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: inline-block;
+            animation: textShineAnimation 3s linear infinite;
         }
 
-        .branding-text-shine:hover {
-            animation: textShineAnimation 1.2s linear infinite;
+        /* Ambient White Falling & Swinging Leaves */
+        .ambient-leaf-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
         }
-    </style>
-</head>
-<body class="grid-bg min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 relative">
 
-    <!-- BACKGROUND AMBIENT FALLING LEAVES -->
-    <div class="ambient-leaf-container">
-        <div class="ambient-leaf" style="left: 15%; animation-delay: 0s; animation-duration: 14s; font-size: 0.9rem;">
-            <i class="fa-solid fa-leaf"></i>
-        </div>
-        <div class="ambient-leaf" style="left: 45%; animation-delay: 3s; animation-duration: 18s; font-size: 1.3rem;">
-            <i class="fa-solid fa-leaf"></i>
-        </div>
-        <div class="ambient-leaf" style="left: 75%; animation-delay: 6s; animation-duration: 15s; font-size: 1rem;">
-            <i class="fa-solid fa-leaf"></i>
-        </div>
-        <div class="ambient-leaf" style="left: 88%; animation-delay: 9s; animation-duration: 20s; font-size: 1.1rem;">
-            <i class="fa-solid fa-leaf"></i>
-        </div>
-    </div>
-
-    <!-- ENTRY SCREEN COVER -->
-    <div id="entry-screen" onclick="enterWebsite()">
-        <div class="leaf-animation mb-6">
-            <i class="fa-solid fa-leaf"></i>
-        </div>
-        <p class="text-zinc-400 font-medium tracking-widest text-xs uppercase animate-pulse">Click anywhere to enter</p>
-    </div>
-
-    <!-- MAIN PORTFOLIO WRAPPER -->
-    <main class="w-full max-w-3xl glass-card rounded-2xl overflow-hidden mt-8 sm:mt-16 animate-fade-in opacity-0">
-        
-        <!-- Banner section -->
-        <div class="w-full h-48 sm:h-64 relative bg-zinc-900 overflow-hidden">
-            <img src="https://media.discordapp.net/attachments/1503422943512891470/1528077050026393650/Youtube_Banner_2.png?ex=6a5cfc27&is=6a5baaa7&hm=db1fe290399a9264ee598380d39e608e593079a3eca06de2f774003105660bd8&=&format=webp&quality=lossless&width=1536&height=864" 
-                 alt="Banner" 
-                 class="w-full h-full object-cover opacity-80"
-                 onerror="this.style.display='none'; this.parentNode.classList.add('bg-gradient-to-r', 'from-purple-900/40', 'to-zinc-900')">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#08080c] to-transparent"></div>
-        </div>
-
-        <!-- Profile Header -->
-        <div class="px-6 pb-6 relative flex flex-col items-center sm:items-start sm:flex-row gap-6 -mt-16">
-            <div class="w-32 h-32 rounded-2xl overflow-hidden border-4 border-[#08080c] bg-zinc-800 shadow-2xl relative group shrink-0 thumbnail-shine cursor-pointer">
-                <img src="https://media.discordapp.net/attachments/1503422943512891470/1528076846787199057/12121.png?ex=6a5cfbf6&is=6a5baa76&hm=dcee679e1f639c0394bf1b815320819abdfd4691c47d496da75c3d1c3aae7ced&=&format=webp&quality=lossless&width=1095&height=1020" 
-                     alt="gorillaxd133" 
-                     class="w-full h-full object-cover">
-            </div>
-            
-            <div class="text-center sm:text-left pt-2 sm:pt-16 flex-1">
-                <h1 class="text-3xl font-extrabold tracking-tight text-white glow-glow">gorillaxd133</h1>
-                <p class="text-purple-400 text-sm font-semibold tracking-wider uppercase mt-1">
-                    <i class="fa-solid fa-leaf mr-1"></i> Thumbnail Designer & Artist
-                </p>
-                <p class="text-zinc-400 text-sm mt-2 max-w-xl">
-                    Creating Stunning And Bright Youtube And Streaming Thumbnails With Extreme Precision And Loyalty.
-                </p>
-                <p class="text-zinc-500 text-xs font-semibold tracking-wide mt-2 space-x-2 flex flex-wrap justify-center sm:justify-start items-center gap-y-1">
-                    <span>Indian Thumbnail Designer</span>
-                    <span class="text-zinc-700 font-normal">|</span>
-                    <span>Currency: Rupees</span>
-                    <span class="text-zinc-700 font-normal">|</span>
-                    <span class="text-purple-400/80"><i class="fa-solid fa-earth-americas text-[10px] mr-1"></i>India - Worldwide</span>
-                </p>
-            </div>
-        </div>
-
-        <!-- Audio Player Bar -->
-        <div class="mx-6 p-4 rounded-xl bg-zinc-950/50 border border-zinc-800/60 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
-                    <i class="fa-solid fa-music animate-pulse"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-zinc-500 uppercase tracking-widest font-bold">Atmosphere</p>
-                    <p id="track-name" class="text-sm text-zinc-300 font-medium">Toad Factory - Mario Kart Wii</p>
-                </div>
-            </div>
-            <button id="audio-toggle" onclick="toggleAudio()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs rounded-lg transition shadow-md shadow-purple-600/20 flex items-center gap-2">
-                <i id="play-icon" class="fa-solid fa-play"></i> <span id="play-text">PLAY</span>
-            </button>
-            <audio id="bg-music" loop>
-                <source src="https://cdn.discordapp.com/attachments/1503422943512891470/1528076451402879036/Toad_Factory_Mario_Kart_Wii.mp3?ex=6a5cfb98&is=6a5baa18&hm=73898a731a25aa473e6fb817b131e38b88f6ac9461a55589afd01cfc665ab69a&" type="audio/mpeg">
-            </audio>
-        </div>
-
-        <!-- Showcase Column -->
-        <div class="p-6">
-            <h2 class="text-3xl font-extrabold text-white mb-2 tracking-tight glow-glow text-center uppercase">
-                SHOWCASE
-            </h2>
-            <p class="text-zinc-400 text-sm font-medium tracking-wide text-center mb-8">
-                The More You Scroll The More You Discover !
-            </p>
-            
-            <div class="flex flex-col items-center gap-8 w-full">
-                <!-- Thumbnail Items -->
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528273595112095804/Watermark_2.png?ex=6a5db333&is=6a5c61b3&hm=c5ad385d9478d510a2fffbf8ca24aff3b50e9fe5e8493a53ee120be11e6f90e6&=&format=webp&quality=lossless&width=1536&height=864" alt="Thumbnail Work 1" class="w-full h-full object-cover">
-                </div>
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528084685777932398/WATERMARK_1.png?ex=6a5dac03&is=6a5c5a83&hm=430ab14a454d8484c99eae6d7534577ef88255f4e087b6315aaa5ae899d0aba4&=&format=webp&quality=lossless&width=1535&height=863" alt="Thumbnail Work 2" class="w-full h-full object-cover">
-                </div>
-                <div class="group relative rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800 hover-lift aspect-video w-full cursor-pointer thumbnail-shine" onclick="openLightbox(this)">
-                    <img src="https://media.discordapp.net/attachments/1503422943512891470/1528291540282114128/WATERMARK_3.png?ex=6a5dc3e9&is=6a5c7269&hm=3408c8129b8db4378bbab37400b8231edcf0a0ed972a78b9407022db0a8dc240&=&format=webp&quality=lossless&width=1536&height=864" alt="Thumbnail Work 3" class="w-full h-full object-cover">
-                </div>
-            </div>
-        </div>
-
-        <!-- Gorilla Productions Branding with Leaf Icon -->
-        <div class="w-full flex justify-center mt-8 mb-8">
-            <div class="relative inline-block select-none cursor-default group">
-                <span id="branding-logo" class="branding-text-shine white-neon-glow font-bold tracking-widest text-sm uppercase">
-                    Gorilla Productions
-                </span>
-                <i class="fa-solid fa-leaf text-white text-sm absolute -right-5 bottom-0.5 opacity-90 transition-transform duration-300 group-hover:scale-110"></i>
-            </div>
-        </div>
-
-        <!-- Social Connections -->
-        <div class="p-6 border-t border-zinc-900/60 bg-zinc-950/20">
-            <h2 class="text-lg font-bold text-zinc-200 mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-link text-purple-400"></i> Connections
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a href="https://www.youtube.com/@gorillaxd133" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-youtube text-2xl text-red-500 group-hover:scale-110 transition-transform"></i>
-                        <div>
-                            <p class="text-sm font-semibold text-zinc-200">YouTube Channel</p>
-                            <p class="text-xs text-zinc-500">@gorillaxd133</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="https://twitch.tv/gorillaxd133" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover-lift group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-twitch text-2xl text-purple-500 group-hover:scale-110 transition-transform"></i>
-                        <div>
-                            <p class="text-sm font-semibold text-zinc-200">Twitch Stream</p>
-                            <p class="text-xs text-zinc-500">gorillaxd133</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-[10000] opacity-0 invisible flex items-center justify-center p-4 select-none overflow-hidden" onclick="closeLightbox(event)">
-        <button class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl p-2 transition-colors focus:outline-none z-50 cursor-pointer" onclick="closeLightbox(event)">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="Enlarged View" class="max-w-full max-h-[88vh] rounded-lg object-contain shadow-2xl border border-zinc-800/40 cursor-grab origin-center">
-    </div>
-
-    <script>
-        const audio = document.getElementById('bg-music');
-        const playIcon = document.getElementById('play-icon');
-        const playText = document.getElementById('play-text');
-
-        function toggleAudio() {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playIcon.className = "fa-solid fa-pause";
-                    playText.innerText = "PAUSE";
-                }).catch(err => console.log(err));
-            } else {
-                audio.pause();
-                playIcon.className = "fa-solid fa-play";
-                playText.innerText = "PLAY";
+        @keyframes ambientLeaf {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(50px) rotate(180deg);
+            }
+            85% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) translateX(-30px) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        function enterWebsite() {
-            const entryScreen = document.getElementById('entry-screen');
-            entryScreen.style.opacity = '0';
-            setTimeout(() => { entryScreen.style.display = 'none'; }, 800);
-            toggleAudio();
+        .ambient-leaf {
+            position: absolute;
+            color: #ffffff;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            animation: ambientLeaf 10s ease-in-out infinite;
+            top: -5vh;
         }
 
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(element) {
-            lightboxImg.src = element.querySelector('img').src;
-            lightbox.classList.remove('invisible', 'opacity-0');
-            lightbox.classList.add('opacity-100');
-            document.body.style.overflow = 'hidden';
+        /* Pulse glow under text */
+        .ambient-glow-orb {
+            position: absolute;
+            width: 450px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 2;
         }
+    </style>
+</head>
+<body class="grid-bg relative select-none">
 
-        function closeLightbox(event) {
-            if (event) event.stopPropagation();
-            lightbox.classList.remove('opacity-100');
-            lightbox.classList.add('opacity-0');
-            setTimeout(() => {
-                lightbox.classList.add('invisible');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-    </script>
+    <!-- AMBIENT GLOW ORB -->
+    <div class="ambient-glow-orb"></div>
+
+    <!-- BACKGROUND FALLING & SWINGING WHITE LEAVES -->
+    <div class="ambient-leaf-container">
+        <div class="ambient-leaf" style="left: 10%; animation-delay: 0s; animation-duration: 9s; font-size: 1.2rem;">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="ambient-leaf" style="left: 28%; animation-delay: 2.5s; animation-duration: 12s; font-size: 0.9rem;">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="ambient-leaf" style="left: 50%; animation-delay: 5s; animation-duration: 11s; font-size: 1.5rem;">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="ambient-leaf" style="left: 72%; animation-delay: 1s; animation-duration: 10s; font-size: 1.1rem;">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="ambient-leaf" style="left: 88%; animation-delay: 3.5s; animation-duration: 13s; font-size: 0.8rem;">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+    </div>
+
+    <!-- MAIN BRANDING TEXT & LEAF HEADER -->
+    <main class="relative z-10 text-center px-4">
+        <div class="relative inline-block group cursor-default">
+            
+            <!-- Glowing Shimmering Title Text -->
+            <h1 class="branding-text-shine white-neon-glow font-black text-4xl sm:text-6xl md:text-7xl tracking-widest uppercase">
+                Gorilla Productions
+            </h1>
+
+            <!-- White Leaf Icon attached to the text -->
+            <i class="fa-solid fa-leaf text-white text-2xl sm:text-4xl absolute -right-8 sm:-right-12 bottom-1 sm:bottom-2 filter drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125"></i>
+
+        </div>
+    </main>
+
 </body>
 </html>
